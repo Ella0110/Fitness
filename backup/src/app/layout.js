@@ -1,10 +1,14 @@
 // layout.js
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Amplify } from 'aws-amplify';
+import awsmobile from '../../aws-exports';
 import React from "react";
-import Providers from './providers';
 
-const inter = Inter({ subsets:  ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
+
+// 配置 AWS Amplify
+Amplify.configure(awsmobile);
 
 export const metadata = {
   title: "Create Next App",
@@ -14,11 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Providers>
-        {children}
-        </Providers>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

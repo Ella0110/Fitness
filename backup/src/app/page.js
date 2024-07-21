@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import { signOut } from 'aws-amplify/auth';
-import Providers from './providers';
+import Providers from './/providers';
 
 export default function Home() {
 
@@ -16,6 +16,7 @@ export default function Home() {
     }
   }
 
+  console.log('222')
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">

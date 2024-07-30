@@ -1,16 +1,17 @@
+import React from "react";
+
 export default function Sidebar() {
   return (
     <>
       <nav
-        className="mx-auto block max-w-[20rem] z-20 lg:mx-0 lg:max-w-none overflow-y-auto lg:flex-none 
-      hidden lg:block fixed z-20 inset-0 top-[6.8125rem] left-[max(0px,calc(50%-45rem))] bottom-[5.5rem] right-auto w-[19rem] pt-0 pl-8 pr-6 overflow-y-auto"
+        className="mx-auto block max-w-[20rem] lg:mx-0 lg:max-w-none overflow-y-auto lg:flex-none lg:block fixed inset-0 top-[6.8125rem] left-[max(0px,calc(50%-45rem))] bottom-[5.5rem] right-auto w-[19rem] pt-0 pl-8 pr-6"
       >
         <div className="sticky top-0 -ml-0.5 pointer-events-none">
-          <div className="h-10 bg-white dark:bg-slate-900"></div>
-          <div className="bg-white dark:bg-slate-900 relative pointer-events-auto">
+          <div className="h-10 bg-white dark:bg-black"></div>
+          <div className="bg-white dark:bg-black relative pointer-events-auto">
             <button
               type="button"
-              className="hidden w-full lg:flex items-center text-sm leading-6 text-slate-700 rounded-md ring-1 ring-slate-400 shadow-sm py-1.5 pl-2 pr-3 hover: dark:bg-slate-800 dark:highlight-white/5 dark:hover:bg-slate-700"
+              className="hidden w-full lg:flex items-center text-sm leading-6 text-slate-700 rounded-md ring-1 ring-slate-400 shadow-sm py-1.5 pl-2 pr-3 hover: dark:bg-slate-800 dark:text-slate-500 dark:bg-black dark:hover:bg-slate-700"
             >
               <svg
                 width="24"
@@ -22,18 +23,18 @@ export default function Sidebar() {
                 <path
                   d="m19 19-3.5-3.5"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
                 <circle
                   cx="11"
                   cy="11"
                   r="6"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></circle>
               </svg>
               Quick search...
@@ -46,11 +47,11 @@ export default function Sidebar() {
         </div>
         <ul role="list" className="flex-1 -ml-0.5 mr-2 space-y-2">
           <li>
-            <ul role="list" className="">
+            <ul role="list" className="" >
               <li>
                 <a
                   href="../../wiki"
-                  className="flex shrink-0 sapce-x-8 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 sapce-x-8 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Documentation
                 </a>
@@ -62,7 +63,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -74,7 +75,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -86,7 +87,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -98,7 +99,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -110,7 +111,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -122,7 +123,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -134,7 +135,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -146,7 +147,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -158,7 +159,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -170,7 +171,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -182,7 +183,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -194,7 +195,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -206,7 +207,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -218,7 +219,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -230,7 +231,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -242,7 +243,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -254,7 +255,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -266,7 +267,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>
@@ -278,7 +279,7 @@ export default function Sidebar() {
               <li>
                 <a
                   href="#"
-                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700"
+                  className="flex shrink-0 text-sm/8 font-semibold text-slate-700 dark:text-white"
                 >
                   Dashboard
                 </a>

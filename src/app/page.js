@@ -1,22 +1,11 @@
 'use client'
 
-import React from "react";
-import { signOut } from 'aws-amplify/auth';
-import AuthModal from './components/authmodel/AuthModel'
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import React from "react"
+import Header from "./components/header/Header"
+import Footer from "./components/footer/Footer"
 
 
 export default function Home() {
-
-  async function handleSignOut() {
-    try {
-      await signOut({ global: true });
-      console.log('退出登录')
-    } catch (error) {
-      console.log('error signing out: ', error);
-    }
-  }
 
   return (
     <>
@@ -30,5 +19,5 @@ export default function Home() {
       <Footer />
       </div>
     </>
-  );
+  )
 }

@@ -1,6 +1,7 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
+/* eslint-disable semi */
+import globals from "globals"
+import pluginJs from "@eslint/js"
+import pluginReactConfig from "eslint-plugin-react/configs/recommended.js"
 
 
 export default [
@@ -9,4 +10,8 @@ export default [
   {languageOptions: { globals: globals.browser }},
   pluginJs.configs.recommended,
   pluginReactConfig,
+  { "rules": {
+    "semi": [2, "never"],
+    "react/prop-types": "off"
+}}
 ];

@@ -1,8 +1,8 @@
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
-import Sidebar from "../components/sidebar/Sidebar";
+import Header from "../components/header/Header"
+import Footer from "../components/footer/Footer"
+import Sidebar from "../components/sidebar/Sidebar"
 import Content from "../components/content/documentation/Content"
-import React from "react";
+import React from "react"
 
 export default function Wiki() {
   return (
@@ -16,5 +16,5 @@ export default function Wiki() {
       </div>
       <Footer />
     </>
-  );
+  )
 }

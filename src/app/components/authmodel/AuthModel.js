@@ -1,19 +1,18 @@
-'use client';
+/* eslint-disable react/prop-types */
+'use client'
 
-import { useState, useEffect, React } from 'react';
-import { signIn, signUp,  confirmSignUp} from 'aws-amplify/auth';;
-// import { useRouter } from 'next/navigation';
+import { useState, useEffect, React } from 'react'
+import { signIn, signUp,  confirmSignUp} from 'aws-amplify/auth'
 
-const AuthModel = ({ showModal, setShowModal, authStates, setAuthStates}) => {
+const AuthModel = ({ showModal, setShowModal, authStates, setAuthStates, setIsSignin}) => {
 
-  if (!showModal) return null;
+  if (!showModal) return null
 
-  const [isConfirmSignUp, setIsConfirmSignUp] = useState(false);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('')
   const obj = {
-    login: <LoginForm setShowModal={setShowModal} setAuthStates={setAuthStates} username={username} setUsername={setUsername} />, 
+    login: <LoginForm setShowModal={setShowModal} setAuthStates={setAuthStates} username={username} setUsername={setUsername} setIsSignin={setIsSignin}/>, 
     signup: <RegisterForm setAuthStates={setAuthStates} username={username} setUsername={setUsername} />, 
-    confirm:<ConfirmSignUpForm setShowModal={setShowModal} setAuthStates={setAuthStates} username={username}/>
+    confirm:<ConfirmSignUpForm setAuthStates={setAuthStates} username={username}/>
 }
 
   return (
@@ -22,67 +21,60 @@ const AuthModel = ({ showModal, setShowModal, authStates, setAuthStates}) => {
         <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
           onClick={() => setShowModal(false)} >X</button>
         {obj[authStates]}
-        {/* {isLogin && (<LoginForm setShowModal={setShowModal}/>)}
-        {isSignup && (<RegisterForm setIsSignup={setIsSignup} setIsConfirmSignUp={setIsConfirmSignUp} username={username} setUsername={setUsername}/>)}
-        {isConfirmSignUp && (<ConfirmSignUpForm setShowModal={setShowModal} username={username}/>)} */}
+
         <button
           className="mt-4 text-blue-500 hover:text-blue-700"
           onClick={() => setAuthStates(authStates==='login'?'signup':'login')}
         >
           {authStates==='login' ? 'Switch to Register' : authStates==='signup' ? 'Switch to Login' : ''}
-          {/* {isLogin ? setAuthStates('login') : setAuthStates('signup')} */}
           
         </button>
-        {authStates}
       </div>
     </div>
-  );
-};
+  )
+}
 
-const LoginForm = ({setShowModal, setAuthStates, username, setUsername}) => {
-  // const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-//   const router = useRouter();s
+const LoginForm = ({setShowModal, setAuthStates, username, setUsername, setIsSignin}) => {
+
+  const [password, setPassword] = useState('')
+  const [message, setMessage] = useState('')
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setMessage('')
     try {
-      const { isSignedIn, nextStep } = await signIn({ username, password });
+      const { isSignedIn, nextStep } = await signIn({ username, password })
       console.log(isSignedIn, nextStep)
       console.log((nextStep['signInStep']))
       setMessage(nextStep.signInStep)
         switch(nextStep.signInStep){
           case 'CONFIRM_SIGN_IN_WITH_SMS_MFA_CODE':
-            break;
+            break
             // TODO: Handle MFA if app supports it
           case 'CONFIRM_SIGN_IN_WITH_NEW_PASSWORD':
-            break;
+            break
             // TODO: prompt user to enter a new password
           case 'RESET_PASSWORD':
-            break;
+            break
             // TODO: prompt user to reset their password
           case 'CONFIRM_SIGN_UP':
             setMessage('该账户未验证，请检查您的电子邮件以验证账户。')
-              
-              setTimeout(() => {setAuthStates('confirm')}, 800);
-            break;
+            setTimeout(() => {setAuthStates('confirm')}, 800)
+            break
             // TODO: prompt user to confirm sign up 
           case 'DONE':
             setMessage('登录成功')
-            // setAuthStates('')
-            setTimeout(() => {setShowModal(false);}, 800);
-            break;
+            setTimeout(() => {setIsSignin(true);setShowModal(false)}, 800)
+            break
         default:
-            break;
+            break
         }
 
      
     } catch (error) {
-      setMessage(error.message);
+      setMessage(error.message)
     }
-  };
+  }
 
   return (
     <div>
@@ -106,59 +98,47 @@ const LoginForm = ({setShowModal, setAuthStates, username, setUsername}) => {
       </form>
       {message && <p className="mt-4 text-red-500">{message}</p>}
     </div>
-  );
-};
+  )
+}
 
 const RegisterForm = ({setAuthStates, username, setUsername}) => {
 
-  
-    // const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-    // const router = useRouter();
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
 
     const handleRegister = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         setMessage('')
         try {
-            const { isSignUpComplete, nextStep } = await signUp({
+            const { nextStep } = await signUp({
             username,
             password,
             attributes: { email },
-          });
-        //   setMessage('');
+          })
           console.log(nextStep)
 
           switch(nextStep.signUpStep){
             case 'CONFIRM_SIGN_UP':
               setMessage('注册成功！请检查您的电子邮件以验证账户。')
-              
-              setTimeout(() => {setAuthStates('confirm')}, 800);
+              setTimeout(() => {setAuthStates('confirm')}, 800)
               console.log('CONFIRM_SIGN_UP')
-              break;
+              break
               // TODO: Handle MFA if app supports it
             case 'COMPLETE_AUTO_SIGN_IN':
-              break;
+              break
               // TODO: prompt user to confirm sign up 
             case 'DONE':
               setMessage('注册完全成功')
-              break;
+              break
           default:
-              break;
+              break
           }
 
-        //   setIsSignup(false);
-        //   setIsConfirmSignUp(true)
-          // 注册成功后跳转到确认页面，传递用户名
-        //   setTimeout(() => {
-        //     // console.log(username)
-        //     router.push(`/confirmsignup?username=${encodeURIComponent(username)}`);
-        //   }, 2000);
         } catch (error) {
-          setMessage(error.message);
+          setMessage(error.message)
         }
-      };
+      }
   return (
     <div>
       <h2 className="text-2xl mb-4 text-slate-700">Register</h2>
@@ -188,42 +168,38 @@ const RegisterForm = ({setAuthStates, username, setUsername}) => {
       </form>
       {message && <p className="mt-4 text-red-500">{message}</p>}
     </div>
-  );
-};
+  )
+}
 
-const ConfirmSignUpForm = ({setShowModal, setAuthStates, username}) => {
-    const [confirmationCode, setConfirmationCode] = useState('');
-    const [message, setMessage] = useState('');
-    // const router = useRouter();
-    // const username = useSearchParams().get('username')
+const ConfirmSignUpForm = ({ setAuthStates, username}) => {
+    const [confirmationCode, setConfirmationCode] = useState('')
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
-        // setUserName(new URLSearchParams(window.location.search).get('username'));
-        // console.log(window.location.search)
+
         if (!username) {
-            
-          setMessage('无效的用户名。请重新注册。');
+          setMessage('无效的用户名。请重新注册。')
         }
-      },[]);
+      },[])
     
       const handleConfirmSignUp = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         try {
             console.log(username+'请求函数')
             const { isSignUpComplete, nextStep } =  await confirmSignUp({
                 username,
                 confirmationCode
-              });
+              })
             console.log(username+'请求函数结束')
           console.log(isSignUpComplete, nextStep)
-          setMessage('确认成功！请重新登录...');
+          setMessage('确认成功！请重新登录...')
           setTimeout(() => {
-            setAuthStates('login');
-          }, 2000); // 2秒后跳转到主页
+            setAuthStates('login')
+          }, 2000) // 2秒后跳转到主页
         } catch (error) {
-          setMessage(error.message);
+          setMessage(error.message)
         }
-      };
+      }
     
       return (
         <div className="max-w-md mx-auto p-5 ">
@@ -242,9 +218,9 @@ const ConfirmSignUpForm = ({setShowModal, setAuthStates, username}) => {
           </form>
           {message && <p className="mt-4 text-red-500">{message}</p>}
         </div>
-      );
+      )
 
 
 }
 
-export default AuthModel;
+export default AuthModel

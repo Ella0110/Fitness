@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    "react"
+ ],
+  "extends": "next/core-web-vitals", 
+  "rules": {
+    "semi": [2, "never"],
+    "react/prop-types": "off"
+  }
+}

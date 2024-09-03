@@ -3,6 +3,8 @@
 
 import { useState, useEffect, React } from 'react'
 import { signIn, signUp,  confirmSignUp} from 'aws-amplify/auth'
+import { useRouter } from 'next/navigation'
+
 
 const AuthModel = ({ showModal, setShowModal, authStates, setAuthStates, setIsSignin}) => {
 
@@ -38,6 +40,7 @@ const LoginForm = ({setShowModal, setAuthStates, username, setUsername, setIsSig
 
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
+  const router = useRouter()
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -64,7 +67,7 @@ const LoginForm = ({setShowModal, setAuthStates, username, setUsername, setIsSig
             // TODO: prompt user to confirm sign up 
           case 'DONE':
             setMessage('登录成功')
-            setTimeout(() => {setIsSignin(true);setShowModal(false)}, 800)
+            setTimeout(() => {setIsSignin(true);setShowModal(false);router.push('/home')}, 800)
             break
         default:
             break

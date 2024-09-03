@@ -4,11 +4,13 @@ import React, { useEffect } from "react"
 import AuthModel from "../authmodel/AuthModel"
 import { useState } from "react"
 import { signOut, getCurrentUser } from "aws-amplify/auth"
+import { useRouter } from 'next/navigation'
 
-export default function Header() {
+export default function Header({children}) {
   const [showModal, setShowModal] = useState(false)
   const [authStates, setAuthStates] = useState("")
   const [isSignin, setIsSignin] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     async function getUserState(){
@@ -32,6 +34,7 @@ export default function Header() {
       await signOut({ global: true })
       console.log("退出登录")
       setIsSignin(false)
+      router.push('/')
     } catch (error) {
       console.log("error signing out: ", error)
     }
@@ -41,26 +44,13 @@ export default function Header() {
     <>
       <header className="sticky inset-x-0 bg-white supports-backdrop-blur:bg-white/95 backdrop-blur transition-colors z-20 top-0 dark:bg-black">
         <nav
-          className="flex items-center justify-between border-b border-slate-900/15 border-gray-400 lg:gap-x-12 p-6 lg:px-8"
+          className="flex static items-center border-b border-slate-900/15 border-gray-400 lg:gap-x-12 p-6 lg:px-8"
           aria-label="Global"
         >
-          <h1 className="text-3xl font-extrabold">2333</h1>
-          <div className="hidden lg:flex lg:gap-x-12">
-            <a href="/wiki" className="text-sm font-semibold text-white-900">
-              Wiki
-            </a>
-            <a href="#" className="text-sm font-semibold text-white-900">
-              Marketplace
-            </a>
-            <a href="#" className="text-sm font-semibold text-white-900">
-              Company
-            </a>
-            <a href="#" className="text-sm font-semibold text-white-900">
-              Features
-            </a>
-          </div>
+          
+          {children}
           {!isSignin ? (
-            <div className="lg:flex lg:flex-1 lg:justify-end">
+            <div className="lg:flex absolute right-0  p-4 lg:justify-end">
               <button
                 className="text-sm font-semibold  bg-gray-800 rounded-full py-2 px-4 text-white hover:bg-black"
                 onClick={() => {
@@ -89,7 +79,7 @@ export default function Header() {
               />
             </div>
           ) : (
-            <div className="lg:flex lg:flex-1 lg:justify-end">
+            <div className="lg:flex absolute right-0 p-4 lg:justify-end">
             <button
               className="text-sm lg:justify-end font-semibold  bg-gray-800 rounded-full py-2 px-4 text-white hover:bg-black"
               onClick={() => {
